@@ -1,0 +1,102 @@
+
+body {
+  background-color: #E8ECEF;
+}
+
+.centered {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+
+
+
+
+/* Styles for outlet dashboard */
+
+/* Ensure the anchor tag is block-level but doesn't affect layout */
+.card-link {
+  display: block;
+  text-decoration: none; /* Remove underline from the link */
+}
+
+/* Center the card container vertically */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+/* Set fixed size for the dashboard-card */
+.dashboard-card {
+  min-height: 400px;
+  max-width: 400px;
+  width: 100%;
+  /* Changes the cursor to a hand on hover */
+}
+
+/* Add custom gap between dashboard-cards */
+.custom-gap > .dashboard-card {
+  margin-right: 80px;
+}
+
+/* Remove extra margin from the last dashboard-card */
+.custom-gap > .dashboard-card:last-child {
+  margin-right: 0;
+}
+
+/* Style for the footer with background color and fixed height */
+.custom-footer {
+  background-color: #3a9103;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Customize card-title size */
+.custom-footer .card-title {
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 1.2rem; /* Adjust as needed for larger text */
+  font-weight: bold;
+}
+
+
+
+
+/* Styles for outlet header_outleddb_managestocks */
+
+/* Custom styling for navbar width and active link */
+.navbar-container {
+  width: 80%;
+  margin: 35px auto 0 auto;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem; /* Adjusts padding to control active box size */
+}
+
+
+/* Styles for outlet manage stocks */
+
+.form-container-addstock {
+  width: 60%;
+  margin: 70px auto 0 auto; /* 30px top, 40px left and right */
+}
+
+.form-container-addstock .row > .col-12,
+.form-container-addstock .row > .col-md-6,
+.form-container-addstock .row > .col-md-4 {
+  margin-bottom: 15px;
+}

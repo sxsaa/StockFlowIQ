@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap-like Form Without Bootstrap</title>
+    <style>
+        /* Bootstrap-like styles */
+        body {
+            font-family: Arial, sans-serif; /* Bootstrap default font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 800px; /* Increased width */
+            padding: 40px; /* More padding for better spacing */
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            border: 1px solid #ddd; /* Light border */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600; /* Bootstrap-style bold label */
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 18px;
+            font-family: inherit;
+            background-color: #fff;
+        }
+
+        textarea {
+            height: 200px; /* Increased textarea height */
+            resize: none;
+        }
+
+        .form-text {
+            font-size: 16px;
+            color: #6c757d; /* Bootstrap muted text color */
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff; /* Bootstrap primary blue */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3; /* Bootstrap darker blue */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <form action="/outletdata_dashboard/customer_reviews" method="POST">
+            <div class="form-group">
+                <label for="customerID">Customer ID</label>
+                <input type="number" id="customerID" name="customerID" required>
+            </div>
+            <div class="form-group">
+                <label for="feedback">Your Feedback</label>
+                <textarea id="feedback" name="feedback" required></textarea>
+                <div class="form-text">We'll never share your feedback with anyone else.</div>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        
+    </div>
+
+</body>
+</html>

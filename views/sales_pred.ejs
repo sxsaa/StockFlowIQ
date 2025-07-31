@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart', 'line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        fetch('http://localhost:8000/forecast/')
+          .then(response => response.json())
+          .then(data => {
+            console.log("Fetched Data:", data);  // Log the fetched data to see if it's correct
+
+            // Check if data is an array and has at least two elements (header + data rows)
+            if (Array.isArray(data) && data.length > 1) {
+              var chartData = [['Year', 'Sales Forecast']]; // Chart header
+
+              // Process the data into a format that Google Charts expects
+              data.slice(1).forEach(entry => {
+                // Ensure that year is treated as a string or Date
+                chartData.push([entry[0], entry[1]]);
+              });
+
+              var dataTable = google.visualization.arrayToDataTable(chartData);
+
+              var options = {
+                title: 'Sales Forecast',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: {
+                  title: 'Year',
+                  format: 'yyyy-MM', // Optional: format the date as YYYY-MM
+                },
+                vAxis: {
+                  title: 'Sales Forecast',
+                }
+              };
+
+              var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+              chart.draw(dataTable, options);
+            } else {
+              console.error('Invalid data structure received from API.');
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching forecast data:', error);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 1200px; height: 500px"></div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<%- include('partials/header_outletdb_managestocks') %>
+
+<div>
+    <div class="form-container-addstock">
+        <form class="row g-3" method="POST" action="/update_stocks">
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Item Code</label>
+              <input type="text" class="form-control" id="inputEmail4" name="item_code">
+            </div>
+            <div class="col-md-6">
+              <label for="inputQuantity" class="form-label">Quantity</label>
+              <input type="text" class="form-control" id="inputQuantity" placeholder="Enter quantity" name="quantity">
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Price</label>
+                <input type="text" class="form-control" id="inputEmail4" name="price">
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Discount</label>
+                <input type="password" class="form-control" id="inputPassword4" name="discount">
+              </div>
+            <div class="col-md-4">
+              <label for="inputMfd" class="form-label">Update Date</label>
+              <input type="date" class="form-control" id="inputMfd" name="update_date">
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Update Stock</button>
+            </div>
+        </form>
+    </div>
+</div>
+

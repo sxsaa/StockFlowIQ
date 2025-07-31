@@ -1,0 +1,3 @@
+fastapi
+transformers
+psycopg2-binary

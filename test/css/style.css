@@ -1,0 +1,51 @@
+/* Ensure the anchor tag is block-level but doesn't affect layout */
+.card-link {
+    display: block;
+    text-decoration: none; /* Remove underline from the link */
+}
+
+/* Center the card container vertically */
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/* Set fixed size for the cards */
+.card {
+    min-height: 400px;
+    max-width: 400px;
+    width: 100%;
+ /* Changes the cursor to a hand on hover */
+}
+
+/* Add custom gap between cards */
+.custom-gap > .card {
+    margin-right: 80px;
+}
+
+/* Remove extra margin from the last card */
+.custom-gap > .card:last-child {
+    margin-right: 0;
+}
+
+/* Style for the footer with background color and fixed height */
+.custom-footer {
+    background-color: #3a9103;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Customize card-title size */
+.custom-footer .card-title {
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 1.2rem; /* Adjust as needed for larger text */
+    font-weight: bold;
+}

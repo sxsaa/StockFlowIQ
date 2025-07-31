@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Secrets</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar', 'corechart']});
+      google.charts.setOnLoadCallback(drawCharts);
+
+      function drawCharts() {
+        // Parse the chart data from the server
+        const dailyChartData = <%- dailyChartData %>;
+        const weeklyChartData = <%- weeklyChartData %>;
+        const monthlyChartData = <%- monthlyChartData %>;
+        const pieChartData = <%- pieChartData %>;
+
+        // Daily Sales Chart
+        const dailyData = google.visualization.arrayToDataTable(dailyChartData);
+        const dailyOptions = {
+          chart: {
+            title: 'Daily Sales Performance',
+            subtitle: 'Sales and Profit for the Last 7 Days',
+          },
+          bars: 'vertical'
+        };
+        const dailyChart = new google.charts.Bar(document.getElementById('daily_chart'));
+        dailyChart.draw(dailyData, google.charts.Bar.convertOptions(dailyOptions));
+
+        // Weekly Sales Chart
+        const weeklyData = google.visualization.arrayToDataTable(weeklyChartData);
+        const weeklyOptions = {
+          chart: {
+            title: 'Weekly Sales Performance',
+            subtitle: 'Sales and Profit for the Last 5 Weeks',
+          },
+          bars: 'vertical'
+        };
+        const weeklyChart = new google.charts.Bar(document.getElementById('weekly_chart'));
+        weeklyChart.draw(weeklyData, google.charts.Bar.convertOptions(weeklyOptions));
+
+        // Monthly Sales Chart
+        const monthlyData = google.visualization.arrayToDataTable(monthlyChartData);
+        const monthlyOptions = {
+          chart: {
+            title: 'Monthly Sales Performance',
+            subtitle: 'Sales and Profit for the Last 5 Months',
+          },
+          bars: 'vertical'
+        };
+        const monthlyChart = new google.charts.Bar(document.getElementById('monthly_chart'));
+        monthlyChart.draw(monthlyData, google.charts.Bar.convertOptions(monthlyOptions));
+
+        // Pie Chart for Customer Reviews Status
+        const pieData = google.visualization.arrayToDataTable(pieChartData);
+        const pieOptions = {
+          title: 'Customer Review Status Distribution',
+        };
+        const pieChart = new google.visualization.PieChart(document.getElementById('piechart'));
+        pieChart.draw(pieData, pieOptions);
+      }
+    </script>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column; gap: 50px; align-items: center; padding: 20px;">
+      <!-- Daily Chart -->
+      <div id="daily_chart" style="width: 80%; height: 500px;"></div>
+      <!-- Weekly Chart -->
+      <div id="weekly_chart" style="width: 80%; height: 500px;"></div>
+      <!-- Monthly Chart -->
+      <div id="monthly_chart" style="width: 80%; height: 500px;"></div>
+      <!-- Pie Chart -->
+      <div id="piechart" style="width: 80%; height: 500px;"></div>
+    </div>
+
+    <!-- Custom Button -->
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+      <button 
+        style="background-color: #007bff; color: white; border: none; padding: 15px; font-size: 18px; cursor: pointer; width: 60%; border-radius: 5px;"
+        onclick="window.location.href='/outletdata_dashboard/customer_reviews'">
+        Go to Customer Reviews
+      </button>
+    </div>
+  </body>
+</html>

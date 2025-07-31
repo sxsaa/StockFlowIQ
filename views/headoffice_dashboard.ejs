@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head Office Dashboard</title>
+
+    <!-- Load Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            drawLineChart();
+            drawBarChart();
+            drawColumnChart();
+            drawAreaChart();
+        }
+
+        function drawLineChart() {
+            console.log("Google Charts Loaded for Line Chart");
+
+            var chartData = <%- chartData %>;
+
+            if (!chartData || chartData.length === 0) {
+                console.error("Chart data is missing or empty:", chartData);
+                return;
+            }
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Month');
+            data.addColumn('number', 'Gross Income');
+            data.addRows(chartData);
+
+            var options = {
+                title: 'Gross Income by Month',
+                hAxis: { title: 'Month' },
+                vAxis: { title: 'Gross Income' },
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+        function drawBarChart() {
+            console.log("Google Charts Loaded for Bar Chart");
+
+            var paymentData = <%- paymentData %>;
+
+            if (!paymentData || paymentData.length === 0) {
+                console.error("Payment data is missing or empty:", paymentData);
+                return;
+            }
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Payment Method');
+            data.addColumn('number', 'Count');
+
+            data.addRows(paymentData);
+
+            var options = {
+                title: "Number of Transactions by Payment Method",
+                width: 1200,
+                height: 400,
+                bar: { groupWidth: "80%" },
+                legend: { position: "none" },
+                hAxis: { title: "Payment Method" },
+                vAxis: { title: "Count" }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+            chart.draw(data, options);
+        }
+
+        function drawColumnChart() {
+            console.log("Google Charts Loaded for Column Chart");
+
+            var productLineData = <%- productLineData %>;
+
+            if (!productLineData || productLineData.length === 0) {
+                console.error("Product line data is missing or empty:", productLineData);
+                return;
+            }
+
+            var data = google.visualization.arrayToDataTable([
+                ["Product Line", "Transactions", { role: "style" }],
+                ...productLineData.map(row => [row[0], row[1], "color: #4CAF50"]) // Green bars
+            ]);
+
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1, { calc: "stringify", sourceColumn: 1, type: "string", role: "annotation" }, 2]);
+
+            var options = {
+                title: "Transactions by Product Line",
+                width: 1200,
+                height: 400,
+                bar: { groupWidth: "80%" },
+                legend: { position: "none" },
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+            chart.draw(view, options);
+        }
+
+        function drawAreaChart() {
+            console.log("Google Charts Loaded for Area Chart");
+
+            var cityIncomeData = <%- cityIncomeData %>;
+
+            if (!cityIncomeData || cityIncomeData.length === 0) {
+                console.error("City Income data is missing or empty:", cityIncomeData);
+                return;
+            }
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Month');
+            data.addColumn('number', 'Mandalay');
+            data.addColumn('number', 'Naypyitaw');
+            data.addColumn('number', 'Yangon');
+
+            data.addRows(cityIncomeData);
+
+            var options = {
+                title: "Gross Income by City Over Time",
+                hAxis: { title: "Month", titleTextStyle: { color: "#333" } },
+                vAxis: { minValue: 0 },
+                width: 1200,
+                height: 500,
+                legend: { position: "bottom" }
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById("areachart_values"));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <!-- <h1>Head Office Dashboard</h1> -->
+
+    <!-- Line Chart -->
+    <div id="chart_div" style="width: 80%; height: 500px;"></div>
+
+    <div style="height: 50px;"></div>
+
+    <!-- Bar Chart -->
+    <div id="barchart_values" style="width: 80%; height: 400px;"></div>
+
+    <div style="height: 50px;"></div>
+
+    <!-- Column Chart -->
+    <div id="columnchart_values" style="width: 80%; height: 400px;"></div>
+
+    <div style="height: 50px;"></div>
+
+    <!-- Area Chart -->
+    <div id="areachart_values" style="width: 80%; height: 500px;"></div>
+
+</body>
+</html>

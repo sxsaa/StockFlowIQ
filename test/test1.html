@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Parse the passed chartData, lastDate, and lastDaySales
+        const chartData = <%- chartData %>; 
+        const lastDate = <%- lastDate %>;
+        const lastDaySales = <%- lastDaySales %>;
+
+        // Render chartData from server-side code
+        const data = google.visualization.arrayToDataTable(chartData);
+
+        const options = {
+          chart: {
+            title: 'Outlet Sales Performance',
+            subtitle: 'Sales and Profit for the Last 7 Days',
+          },
+          bars: 'vertical'
+        };
+
+        const chart = new google.charts.Bar(document.getElementById('barchart_material'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+
+        // Display the last day's sales and date on the right side of the chart
+        document.getElementById('lastDay').innerText = 'Last Date: ' + lastDate;
+        document.getElementById('lastDaySales').innerText = 'Sales on ' + lastDate + ': ' + lastDaySales;
+      }
+    </script>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: space-between;">
+      <!-- Chart on the left -->
+      <div id="barchart_material" style="width: 50%; height: 500px;"></div>
+      
+      <!-- Information block on the right -->
+      <div style="width: 28%; padding-left: 20px; font-size: 18px; background-color: #f4f4f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; padding: 20px;">
+        <div id="lastDay" style="font-size: 24px; font-weight: bold; color: #333; margin-bottom: 10px;"></div>
+        <div id="lastDaySales" style="font-size: 28px; font-weight: bold; color: #e67e22;"></div>
+      </div>
+      
+    </div>
+  </body>
+</html>
